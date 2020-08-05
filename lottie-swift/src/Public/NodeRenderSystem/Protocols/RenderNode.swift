@@ -10,12 +10,12 @@ import CoreGraphics
 import QuartzCore
 
 /// A protocol that defines a node that holds render instructions
-protocol RenderNode {
+public protocol RenderNode {
   var renderer: Renderable & NodeOutput { get }
 }
 
 /// A protocol that defines anything with render instructions
-protocol Renderable {
+public protocol Renderable {
   
   /// The last frame in which this node was updated.
   var hasUpdate: Bool { get }

@@ -14,7 +14,7 @@ import QuartzCore
  This layer holds a single composition container and allows for animation of
  the currentFrame property.
  */
-final class AnimationContainer: CALayer {
+final public class AnimationContainer: CALayer {
   
   /// The animatable Current Frame Property
   @NSManaged var currentFrame: CGFloat
@@ -80,7 +80,7 @@ final class AnimationContainer: CALayer {
     return nil
   }
   
-  func animatorNodes(for keypath: AnimationKeypath) -> [AnimatorNode]? {
+  public func animatorNodes(for keypath: AnimationKeypath) -> [AnimatorNode]? {
     var results = [AnimatorNode]()
     for layer in animationLayers {
       if let nodes = layer.animatorNodes(for: keypath) {
@@ -98,7 +98,7 @@ final class AnimationContainer: CALayer {
     set { layerTextProvider.textProvider = newValue }
   }
   
-  var animationLayers: ContiguousArray<CompositionLayer>
+  public var animationLayers: ContiguousArray<CompositionLayer>
   fileprivate let layerImageProvider: LayerImageProvider
   fileprivate let layerTextProvider: LayerTextProvider
   
