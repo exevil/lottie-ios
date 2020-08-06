@@ -83,16 +83,16 @@ public protocol AnimatorNode: class, KeypathSearchable {
 /// Basic Node Logic
 extension AnimatorNode {
   
-  func shouldRebuildOutputs(frame: CGFloat) -> Bool {
+	public func shouldRebuildOutputs(frame: CGFloat) -> Bool {
     return hasLocalUpdates
   }
   
-  func localUpdatesPermeateDownstream() -> Bool {
+	public func localUpdatesPermeateDownstream() -> Bool {
     /// Optional override
     return true
   }
   
-  func forceUpstreamOutputUpdates() -> Bool {
+	public func forceUpstreamOutputUpdates() -> Bool {
     /// Optional
     return false
   }
@@ -178,19 +178,19 @@ extension AnimatorNode {
   /// Default implementation for Keypath searchable.
   /// Forward all calls to the propertyMap.
   
-  var keypathName: String {
+  public var keypathName: String {
     return propertyMap.keypathName
   }
   
-  var keypathProperties: [String : AnyNodeProperty] {
+  public var keypathProperties: [String : AnyNodeProperty] {
     return propertyMap.keypathProperties
   }
   
-  var childKeypaths: [KeypathSearchable] {
+  public var childKeypaths: [KeypathSearchable] {
     return propertyMap.childKeypaths
   }
   
-  var keypathLayer: CALayer? {
+  public var keypathLayer: CALayer? {
     return nil
   }
   

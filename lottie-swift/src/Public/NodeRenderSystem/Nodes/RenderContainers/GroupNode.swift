@@ -67,7 +67,7 @@ final class GroupNodeProperties: NodePropertyMap, KeypathSearchable {
   }
 }
 
-final class GroupNode: AnimatorNode {
+final public class GroupNode: AnimatorNode {
   
   // MARK: Properties
   let groupOutput: GroupOutputNode
@@ -96,43 +96,43 @@ final class GroupNode: AnimatorNode {
   
   // MARK: Keypath Searchable
   
-  let keypathName: String
+	public let keypathName: String
   
-  let childKeypaths: [KeypathSearchable]
+	public let childKeypaths: [KeypathSearchable]
   
-  var keypathLayer: CALayer? {
+	public var keypathLayer: CALayer? {
     return container
   }
   
   // MARK: Animator Node Protocol
   
-  var propertyMap: NodePropertyMap & KeypathSearchable {
+  public var propertyMap: NodePropertyMap & KeypathSearchable {
     return properties
   }
   
-  var outputNode: NodeOutput {
+  public var outputNode: NodeOutput {
     return groupOutput
   }
   
-  let parentNode: AnimatorNode?
-  var hasLocalUpdates: Bool = false
-  var hasUpstreamUpdates: Bool = false
-  var lastUpdateFrame: CGFloat? = nil
-  var isEnabled: Bool = true {
+  public let parentNode: AnimatorNode?
+  public var hasLocalUpdates: Bool = false
+  public var hasUpstreamUpdates: Bool = false
+  public var lastUpdateFrame: CGFloat? = nil
+  public var isEnabled: Bool = true {
     didSet {
       container.isHidden = !isEnabled
     }
   }
   
-  func performAdditionalLocalUpdates(frame: CGFloat, forceLocalUpdate: Bool) -> Bool {
+  public func performAdditionalLocalUpdates(frame: CGFloat, forceLocalUpdate: Bool) -> Bool {
     return rootNode?.updateContents(frame, forceLocalUpdate: forceLocalUpdate) ?? false
   }
   
-  func performAdditionalOutputUpdates(_ frame: CGFloat, forceOutputUpdate: Bool) {
+  public func performAdditionalOutputUpdates(_ frame: CGFloat, forceOutputUpdate: Bool) {
     rootNode?.updateOutputs(frame, forceOutputUpdate: forceOutputUpdate)
   }
   
-  func rebuildOutputs(frame: CGFloat) {
+  public func rebuildOutputs(frame: CGFloat) {
     container.opacity = Float(properties.opacity.value.cgFloatValue) * 0.01
     container.transform = properties.caTransform
     groupOutput.setTransform(container.transform, forFrame: frame)
