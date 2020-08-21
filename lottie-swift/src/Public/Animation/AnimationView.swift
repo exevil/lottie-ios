@@ -813,8 +813,8 @@ final public class AnimationView: LottieView {
   /// Updates the animation frame. Does not affect any current animations
   func updateAnimationFrame(_ newFrame: CGFloat) {
     CATransaction.begin()
-    CATransaction.setCompletionBlock {
-        self.animationLayer?.forceDisplayUpdate()
+    CATransaction.setCompletionBlock { [weak self] in
+        self?.animationLayer?.forceDisplayUpdate()
     }
     CATransaction.setDisableActions(true)
     animationLayer?.currentFrame = newFrame
