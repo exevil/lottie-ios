@@ -71,7 +71,7 @@ public enum BlendMode: Int, Codable {
 /**
  A base top container for shapes, images, and other view objects.
  */
-class LayerModel: Codable {
+public class LayerModel: Codable {
   
   /// The readable name of the layer
   let name: String
@@ -130,21 +130,21 @@ class LayerModel: Codable {
     case hidden = "hd"
   }
   
-  required init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: LayerModel.CodingKeys.self)
-    self.name = try container.decodeIfPresent(String.self, forKey: .name) ?? "Layer"
-    self.index = try container.decode(Int.self, forKey: .index)
-    self.type = try container.decode(LayerType.self, forKey: .type)
-    self.coordinateSpace = try container.decodeIfPresent(CoordinateSpace.self, forKey: .coordinateSpace) ?? .type2d
-    self.inFrame = try container.decode(Double.self, forKey: .inFrame)
-    self.outFrame = try container.decode(Double.self, forKey: .outFrame)
-    self.startTime = try container.decode(Double.self, forKey: .startTime)
-    self.transform = try container.decode(Transform.self, forKey: .transform)
-    self.parent = try container.decodeIfPresent(Int.self, forKey: .parent)
-    self.blendMode = try container.decodeIfPresent(BlendMode.self, forKey: .blendMode) ?? .normal
-    self.masks = try container.decodeIfPresent([Mask].self, forKey: .masks)
-    self.timeStretch = try container.decodeIfPresent(Double.self, forKey: .timeStretch) ?? 1
-    self.matte = try container.decodeIfPresent(MatteType.self, forKey: .matte)
-    self.hidden = try container.decodeIfPresent(Bool.self, forKey: .hidden) ?? false
+	required public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: LayerModel.CodingKeys.self)
+		self.name = try container.decodeIfPresent(String.self, forKey: .name) ?? "Layer"
+		self.index = try container.decode(Int.self, forKey: .index)
+		self.type = try container.decode(LayerType.self, forKey: .type)
+		self.coordinateSpace = try container.decodeIfPresent(CoordinateSpace.self, forKey: .coordinateSpace) ?? .type2d
+		self.inFrame = try container.decode(Double.self, forKey: .inFrame)
+		self.outFrame = try container.decode(Double.self, forKey: .outFrame)
+		self.startTime = try container.decode(Double.self, forKey: .startTime)
+		self.transform = try container.decode(Transform.self, forKey: .transform)
+		self.parent = try container.decodeIfPresent(Int.self, forKey: .parent)
+		self.blendMode = try container.decodeIfPresent(BlendMode.self, forKey: .blendMode) ?? .normal
+		self.masks = try container.decodeIfPresent([Mask].self, forKey: .masks)
+		self.timeStretch = try container.decodeIfPresent(Double.self, forKey: .timeStretch) ?? 1
+		self.matte = try container.decodeIfPresent(MatteType.self, forKey: .matte)
+		self.hidden = try container.decodeIfPresent(Bool.self, forKey: .hidden) ?? false
   }
 }

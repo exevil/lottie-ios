@@ -8,7 +8,7 @@
 import Foundation
 
 /// A layer that holds another animation composition.
-final class PreCompLayerModel: LayerModel {
+final public class PreCompLayerModel: LayerModel {
   
   /// The reference ID of the precomp.
   let referenceID: String
@@ -38,7 +38,7 @@ final class PreCompLayerModel: LayerModel {
     try super.init(from: decoder)
   }
   
-  override func encode(to encoder: Encoder) throws {
+  override public func encode(to encoder: Encoder) throws {
     try super.encode(to: encoder)
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(referenceID, forKey: .referenceID)

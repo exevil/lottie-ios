@@ -8,7 +8,7 @@
 import Foundation
 
 /// A layer that holds vector shape objects.
-final class ShapeLayerModel: LayerModel {
+final public class ShapeLayerModel: LayerModel {
   
   /// A list of shape items.
   let items: [ShapeItem]
@@ -23,7 +23,7 @@ final class ShapeLayerModel: LayerModel {
     try super.init(from: decoder)
   }
   
-  override func encode(to encoder: Encoder) throws {
+  override public func encode(to encoder: Encoder) throws {
     try super.encode(to: encoder)
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.items, forKey: .items)
