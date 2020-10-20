@@ -187,7 +187,10 @@ final public class AnimationContainer: CALayer {
     if respectAnimationFrameRate {
       newFrame = floor(newFrame)
     }
-    animationLayers.forEach( { $0.displayWithFrame(frame: newFrame, forceUpdates: false) })
+    animationLayers.forEach {
+        guard !$0.isHidden else { return }
+        $0.displayWithFrame(frame: newFrame, forceUpdates: false)
+    }
   }
   
 }
